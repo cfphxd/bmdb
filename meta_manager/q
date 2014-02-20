@@ -1,0 +1,24 @@
+                       List of relations
+ Schema |               Name                |   Type   | Owner  
+--------+-----------------------------------+----------+--------
+ public | auth_group                        | table    | cfphxd
+ public | auth_group_id_seq                 | sequence | cfphxd
+ public | auth_group_permissions            | table    | cfphxd
+ public | auth_group_permissions_id_seq     | sequence | cfphxd
+ public | auth_permission                   | table    | cfphxd
+ public | auth_permission_id_seq            | sequence | cfphxd
+ public | auth_user                         | table    | cfphxd
+ public | auth_user_groups                  | table    | cfphxd
+ public | auth_user_groups_id_seq           | sequence | cfphxd
+ public | auth_user_id_seq                  | sequence | cfphxd
+ public | auth_user_user_permissions        | table    | cfphxd
+ public | auth_user_user_permissions_id_seq | sequence | cfphxd
+ public | django_admin_log                  | table    | cfphxd
+ public | django_admin_log_id_seq           | sequence | cfphxd
+ public | django_content_type               | table    | cfphxd
+ public | django_content_type_id_seq        | sequence | cfphxd
+ public | django_session                    | table    | cfphxd
+ public | pfr_meta                          | table    | cfphxd
+ public | pfr_meta_id_seq                   | sequence | cfphxd
+(19 rows)
+
