@@ -7,7 +7,7 @@ listcontains() {
   return 1
 }
 
-sudoportlist="80 443"
+sudoportlist="80 443 8000"
 
 
 if [ -z "$1" ]
@@ -16,6 +16,9 @@ then
 elif listcontains "$sudoportlist" "$1" 
 then
 	sudo ./manage.py runserver 103.18.59.118:$1
+elif [ -z "$1" ]; 
+then
+    ./manage.py shell
 else
 	./manage.py runserver localhost:$1
 fi
