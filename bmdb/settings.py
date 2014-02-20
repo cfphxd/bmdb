@@ -47,9 +47,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'bdb.urls'
+ROOT_URLCONF = 'bmdb.urls'
 
-WSGI_APPLICATION = 'bdb.wsgi.application'
+WSGI_APPLICATION = 'bmdb.wsgi.application'
 
 
 # Database

@@ -16,7 +16,7 @@ then
 elif listcontains "$sudoportlist" "$1" 
 then
 	sudo ./manage.py runserver 103.18.59.118:$1
-elif [ -z "$1" ]; 
+elif [ "$1" -eq 'shell' ]; 
 then
     ./manage.py shell
 else
