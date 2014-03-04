@@ -1,0 +1,527 @@
+#u69-4
+{
+	font-size: 72px;
+	font-family: rock-salt, sans-serif;
+	font-weight: 400;
+	position: relative;
+}
+
+#u1415
+{
+	position: absolute;
+	background-color: #565656;
+	background-color: rgba(68, 68, 68, 0.9);
+	-pie-background: rgba(68, 68, 68, 0.9);
+}
+
+#u1417
+{
+	border-width: 1px;
+	border-style: solid;
+	border-color: #999999;
+	background-color: #DEDEDE;
+	position: relative;
+}
+
+#u2247
+{
+	border-width: 1px;
+	border-style: solid;
+	border-color: #000000;
+	background-color: #FF0000;
+	position: relative;
+}
+
+#u2245,#u2246
+{
+	border-width: 1px;
+	border-style: solid;
+	border-color: #000000;
+	background-color: #FFFFFF;
+	position: relative;
+}
+
+#u1422
+{
+	position: absolute;
+	border-color: #7F7F7F;
+	background-color: transparent;
+}
+
+#u1422:hover
+{
+	border-color: #999999;
+}
+
+#u1438-4
+{
+	background-color: transparent;
+	font-size: 18px;
+	font-family: annie-use-your-telescope, sans-serif;
+	font-weight: 400;
+	position: relative;
+}
+
+#u1422.PamphletThumbSelected #u1438-4 p
+{
+	font-size: 18px;
+	font-family: annie-use-your-telescope, sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
+
+#u1413
+{
+	position: absolute;
+	border-style: none;
+	border-color: transparent;
+	background-color: #C4C4C4;
+}
+
+#u1413:hover
+{
+	border-color: #6B6B6B;
+	background-color: #999999;
+}
+
+#u1413:active
+{
+	border-color: #6B6B6B;
+	background-color: #6B6B6B;
+}
+
+#u1414-4
+{
+	text-align: center;
+	line-height: 1.4;
+	color: #FFFFFF;
+	position: relative;
+}
+
+#u2250-4
+{
+	background-color: transparent;
+	position: relative;
+}
+
+#u2250-4.MuseLinkActive p
+{
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	font-size: 18px;
+	font-family: annie-use-your-telescope, sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
+
+#u2249-4
+{
+	background-color: transparent;
+	position: relative;
+}
+
+#u2249-4.MuseLinkActive p
+{
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	font-size: 18px;
+	font-family: annie-use-your-telescope, sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
+
+#u3255-4
+{
+	background-color: transparent;
+	position: relative;
+}
+
+#u3255-4.MuseLinkActive p
+{
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	font-size: 18px;
+	font-family: annie-use-your-telescope, sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
+
+#u937
+{
+	background-color: #C4C4C4;
+	position: relative;
+}
+
+#u937:hover
+{
+	background-color: #999999;
+}
+
+#u937:active
+{
+	background-color: #6B6B6B;
+}
+
+#u939-4
+{
+	border-style: none;
+	border-color: transparent;
+	background-color: transparent;
+	text-align: center;
+	font-size: 18px;
+	color: #FFFFFF;
+	font-family: annie-use-your-telescope, sans-serif;
+	font-weight: 400;
+	position: relative;
+}
+
+#u944
+{
+	border-width: 1px;
+	border-style: solid;
+	border-color: #777777;
+	background-color: #FFFFFF;
+	position: relative;
+}
+
+#u944:hover
+{
+	background-color: #AAAAAA;
+}
+
+#u951
+{
+	background-color: #C4C4C4;
+	position: relative;
+}
+
+#u937.MuseMenuActive,#u951:hover
+{
+	background-color: #999999;
+}
+
+#u951:active
+{
+	background-color: #6B6B6B;
+}
+
+#u954-4
+{
+	border-style: none;
+	border-color: transparent;
+	background-color: transparent;
+	text-align: center;
+	font-size: 18px;
+	color: #FFFFFF;
+	font-family: annie-use-your-telescope, sans-serif;
+	font-weight: 400;
+	position: relative;
+}
+
+#u960
+{
+	border-width: 1px;
+	border-style: solid;
+	border-color: #777777;
+	background-color: #FFFFFF;
+	position: relative;
+}
+
+#u960:hover
+{
+	background-color: #AAAAAA;
+}
+
+#u1375
+{
+	border-width: 1px;
+	border-style: solid;
+	border-color: #777777;
+	background-color: #FFFFFF;
+	position: relative;
+}
+
+#u1375:hover
+{
+	background-color: #AAAAAA;
+}
+
+#u1377-4
+{
+	text-align: center;
+	font-size: 18px;
+	font-family: annie-use-your-telescope, sans-serif;
+	font-weight: 400;
+	position: relative;
+}
+
+#u1300
+{
+	background-color: #C4C4C4;
+	position: relative;
+}
+
+#u951.MuseMenuActive,#u1300:hover
+{
+	background-color: #999999;
+}
+
+#u1300:active
+{
+	background-color: #6B6B6B;
+}
+
+#u1303-4
+{
+	border-style: none;
+	border-color: transparent;
+	background-color: transparent;
+	text-align: center;
+	font-size: 18px;
+	color: #FFFFFF;
+	font-family: annie-use-your-telescope, sans-serif;
+	font-weight: 400;
+	position: relative;
+}
+
+#u1512
+{
+	border-width: 1px;
+	border-style: solid;
+	border-color: #777777;
+	background-color: #FFFFFF;
+	position: relative;
+}
+
+#u1512:hover
+{
+	background-color: #AAAAAA;
+}
+
+#u1309
+{
+	border-width: 1px;
+	border-style: solid;
+	border-color: #777777;
+	background-color: #FFFFFF;
+	position: relative;
+}
+
+#u1309:hover
+{
+	background-color: #AAAAAA;
+}
+
+#u1314
+{
+	border-width: 1px;
+	border-style: solid;
+	border-color: #777777;
+	background-color: #FFFFFF;
+	position: relative;
+}
+
+#u1314:hover
+{
+	background-color: #AAAAAA;
+}
+
+#u1323
+{
+	border-width: 1px;
+	border-style: solid;
+	border-color: #777777;
+	background-color: #FFFFFF;
+	position: relative;
+}
+
+#u1323:hover
+{
+	background-color: #AAAAAA;
+}
+
+#u1328
+{
+	background-color: #C4C4C4;
+	position: relative;
+}
+
+#u1300.MuseMenuActive,#u1328:hover
+{
+	background-color: #999999;
+}
+
+#u1328:active
+{
+	background-color: #6B6B6B;
+}
+
+#u1328.MuseMenuActive
+{
+	background-color: #999999;
+}
+
+#u1329-4
+{
+	border-style: none;
+	border-color: transparent;
+	background-color: transparent;
+	text-align: center;
+	font-size: 18px;
+	color: #FFFFFF;
+	font-family: annie-use-your-telescope, sans-serif;
+	font-weight: 400;
+	position: relative;
+}
+
+#u937.MuseMenuActive #u939-4,#u951.MuseMenuActive #u954-4,#u1300.MuseMenuActive #u1303-4,#u1328.MuseMenuActive #u1329-4
+{
+	border-style: none;
+	border-color: transparent;
+}
+
+#u1335
+{
+	border-width: 1px;
+	border-style: solid;
+	border-color: #777777;
+	background-color: #FFFFFF;
+	position: relative;
+}
+
+#u1335:hover
+{
+	background-color: #AAAAAA;
+}
+
+#u1344
+{
+	border-width: 1px;
+	border-style: solid;
+	border-color: #777777;
+	background-color: #FFFFFF;
+	position: relative;
+}
+
+#u1344:hover
+{
+	background-color: #AAAAAA;
+}
+
+#u1349
+{
+	border-width: 1px;
+	border-style: solid;
+	border-color: #777777;
+	background-color: #FFFFFF;
+	position: relative;
+}
+
+#u1349:hover
+{
+	background-color: #AAAAAA;
+}
+
+#u2887
+{
+	border-width: 1px;
+	border-style: solid;
+	border-color: #777777;
+	background-color: #FFFFFF;
+	position: relative;
+}
+
+#u2887:hover
+{
+	background-color: #AAAAAA;
+}
+
+#u2896
+{
+	border-width: 1px;
+	border-style: solid;
+	border-color: #777777;
+	background-color: #FFFFFF;
+	position: relative;
+}
+
+#u2896:hover
+{
+	background-color: #AAAAAA;
+}
+
+#u944.MuseMenuActive,#u960.MuseMenuActive,#u1375.MuseMenuActive,#u1512.MuseMenuActive,#u1309.MuseMenuActive,#u1314.MuseMenuActive,#u1323.MuseMenuActive,#u1335.MuseMenuActive,#u1344.MuseMenuActive,#u1349.MuseMenuActive,#u2887.MuseMenuActive,#u2896.MuseMenuActive
+{
+	background-color: #666666;
+}
+
+#u946-4,#u961-4,#u1515-6,#u1311-4,#u1317-6,#u1325-6,#u1338-6,#u1347-4,#u1352-10,#u2888-6,#u2898-8
+{
+	text-align: left;
+	font-size: 18px;
+	font-family: annie-use-your-telescope, sans-serif;
+	font-weight: 400;
+	position: relative;
+}
+
+.PamphletWidget .ThumbGroup .Thumb, .PamphletNextButton, .PamphletPrevButton, .PamphletCloseButton,.MenuItem /* pamphlet2 */
+{
+	cursor: pointer;
+}
+
+#u2631-2,#u2631-5,#u2632,#u2633,#u2633-8,#u2634,#u2634-7,#u2634-11,#u2634-16
+{
+	font-size: 18px;
+	font-family: annie-use-your-telescope, sans-serif;
+	font-weight: 400;
+}
+
+#u2635-28
+{
+	font-size: 18px;
+	font-family: annie-use-your-telescope, sans-serif;
+	font-weight: 400;
+	position: relative;
+}
+
+#u2635-3
+{
+	padding-left: -1px;
+}
+
+#u2635-7
+{
+	padding-left: -1px;
+}
+
+#u2635-11
+{
+	padding-left: -1px;
+}
+
+#u2635-15
+{
+	padding-left: -1px;
+}
+
+#u2635-19
+{
+	padding-left: -1px;
+}
+
+#u2635-26
+{
+	padding-left: -1px;
+}
+
+#pamphletu1412,#u1437-28,#u1419,#menuu869,#u936,#u942,#u943,#u950,#u956,#u957,#u1372,#u1299,#u1305,#u1511,#u1306,#u1313,#u1320,#u1327,#u1333,#u1334,#u1341,#u1348,#u2886,#u2893,#u965-3,#u2631-9,#u2632-6,#u2633-10,#u2634-18,#u3242-3
+{
+	position: relative;
+}
+
