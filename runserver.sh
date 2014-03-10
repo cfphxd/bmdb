@@ -9,7 +9,8 @@ listcontains() {
   return 1
 }
 
-sudoportlist="80 443 8080 8000"
+sudoportlist="80 443"
+portlist="8000 8080"
 
 
 echo "Got ./runserver.sh $1 "
@@ -23,6 +24,9 @@ then
 elif listcontains "$sudoportlist" "$1" 
 then
 	sudo ./manage.py runserver 103.18.59.118:$1
+elif listcontains "$portlist" "$1"
+then
+    ./manage.py runserver 103.18.59.118:$1
 else
 	./manage.py runserver localhost:$1
 fi
