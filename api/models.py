@@ -19,12 +19,29 @@ import inspect
 import sys
 
 
-##################################################################
-## 
-## 
-##################################################################
 
 class BdbEntry(models.Model):
+    """
+    BdbEntry: Super class for models that contain a name/description tuple plus some standard meta info.
+    name: A name of the entry
+    descr: A description of the entry
+    date_created: A date when the entry was created
+    date_last: The date when the entry was last changed
+    user: The user who changed it last
+    ref: A list of references
+    Inherited by:
+    * BdbUnit
+    * BdbFoodAttribute
+    * BdbSymptom
+    * BdbHealthClaim
+    * BdbDisease
+    * BdbPathway
+    * BdbFood
+    * BdbPathway
+    * BdbFoodBiomarker    
+    * BdbFoodBiomarkerEffect
+    * BdbAttribKey
+"""
     name = models.CharField(max_length=255, unique=True)
     alias = models.CharField(max_length=255, blank=True)
     descr = models.CharField(max_length=255, blank=True)
@@ -40,8 +57,9 @@ class BdbEntry(models.Model):
         return self.name
 
 class BdbUnit(BdbEntry):
-    class Meta:
-        db_table = 'bdb_unit'
+    """
+    Stores SI and non SI units.
+"""
 
 #@receiver(pre_save, sender=BdbEntry)
 #def bdb_entry_date_last(sender, instance, *args, **kwargs):
@@ -50,78 +68,100 @@ class BdbUnit(BdbEntry):
 #        instance.date_created = datetime.datetime.now()
 
 class BdbConfig(BdbEntry):
-    class Meta(BdbEntry.Meta):
-        db_table = 'bdb_config'
+    """
+    Stores configuration tuples.
+    Inherits from BdbEntry
+"""
+    def __unicode__(self):
+        return super(self.__class__, self).__unicode__()
+
 
 class BdbFoodAttribute(BdbEntry):
-    class Meta(BdbEntry.Meta):
-        db_table = 'bdb_food_attribute'
-
+    """
+    Information about food attributes like compounds or nutritions the food contains
+    Inherits from BdbEntry
+"""
+    def __unicode__(self):
+        return super(self.__class__, self).__unicode__()
 
 class BdbSymptom(BdbEntry):
     """ A symptom (from Greek , "accident, misfortune, that which befalls", "I befall", "together, with" , "I fall") is a departure from normal function or feeling which is noticed by a patient, indicating the presence of disease or abnormality. A symptom is subjective, observed by the patient, and cannot be measured directly
+    Inherits from BdbEntry
     """
-    class Meta(BdbEntry.Meta):
-        db_table = 'bdb_symptom'
+    def __unicode__(self):
+        return super(self.__class__, self).__unicode__()
 
 class BdbHealthClaim(BdbEntry):
     """ A claim on a food that the food has a certain health benefits for the consumer. A food claim can be simple like
 'Contains Vitam C' or a high level claim like for instance 'This food helps perventing hard attacks' which is difficult to prove.
+    Inherits from BdbEntry
     """
-    class Meta(BdbEntry.Meta):
-        db_table = 'bdb_food_claim'
+    def __unicode__(self):
+        return super(self.__class__, self).__unicode__()
 
 class BdbDisease(BdbEntry):
     """ A disease is an abnormal condition that affects the body of an organism.
+        Inherits from BdbEntry
     """
     symp = models.ManyToManyField(BdbSymptom, blank=True)
     fcla = models.ManyToManyField(BdbHealthClaim, blank=True)
-    class Meta(BdbEntry.Meta):
-        db_table = 'bdb_disease'
+
+    def __unicode__(self):
+        return super(self.__class__, self).__unicode__()
 
 class BdbPathway(BdbEntry):
     """ A claim on a food that the food has a certain health benefits for the consumer. A food claim can be simple like
 'Contains Vitam C' or a high level claim like for instance 'This food helps perventing hard attacks' which is difficult to prove.
+    Inherits from BdbEntry
     """
-    class Meta(BdbEntry.Meta):
-        db_table = 'bdb_physiology'
-
+    def __unicode__(self):
+        return super(self.__class__, self).__unicode__()
 
 class BdbFood(BdbEntry):
-    class Meta(BdbEntry.Meta):
-        db_table = 'bdb_food'
-
+    """ Stores information about food.
+        Inherits from BdbEntry
+"""
+    def __unicode__(self):
+        return super(self.__class__, self).__unicode__()
 
 class BdbBiomarker(BdbEntry):
     """ A biomarker, or biological marker, generally refers to a measured characteristic which may be used as an indicator of some biological state or condition. The term occasionally also refers to a substance whose presence indicates the existence of living organisms.
 Biomarkers are often measured and evaluated to examine normal biological processes, pathogenic processes, or pharmacologic responses to a therapeutic intervention. Biomarkers are used in many scientific fields.
+    Inherits from BdbEntry
     """
     phys = models.ManyToManyField(BdbPathway, blank=True)
     dise = models.ManyToManyField(BdbDisease)
-    #food = models.ManyToManyField(BdbFood, through='BdbFoodBiomarker', blank=True)
-    food = models.ManyToManyField(BdbFood)
+    food = models.ManyToManyField(BdbFood, through='BdbFoodBiomarker', blank=True)
+    #food = models.ManyToManyField(BdbFood)
     fcla = models.ManyToManyField(BdbHealthClaim, blank=True)
-    #fatt = models.ManyToManyField(BdbFoodAttribute, through='BdbFoodAttributeBiomarkerEffect', blank=True)
-    fatt = models.ManyToManyField(BdbFoodAttribute)
+    fatt = models.ManyToManyField(BdbFoodAttribute, through='BdbFoodAttributeBiomarkerEffect', blank=True)
+    #fatt = models.ManyToManyField(BdbFoodAttribute)
 
     unit = models.ForeignKey(BdbUnit, blank=True)
 
-    class Meta(BdbEntry.Meta):
-        db_table = 'bdb_biomarker'
-
+    """
+    Add a key value pair to the biomarker
+"""
     def add_kv(self, k, v):
-        if(v is None):
+        # Make sure that empty values get the value 'None'
+        if(v is None or v.trim() == ''):
             v = "None"
         att_k, created = BdbAttribKey.objects.get_or_create(name=k)
         att,created = self.bdbattrib_set.get_or_create(attrib_key=att_k)
         att.value = v
         att.save()
 
+    """
+    Same as add_kv except that this algorithm loops through an array
+"""
     def add_kv_from_array(self, k, v):
         vs = v.split(',')
         for val in vs:
             self.add_kv(k,val)
 
+    """
+    Adds symptoms to a Disease from an array of symptom names
+"""
     def add_symp_from_array(self, disease, value):
         syms = value.split(',')
         for sym in syms:
@@ -131,7 +171,9 @@ Biomarkers are often measured and evaluated to examine normal biological process
             symp, created = BdbSymptom.objects.get_or_create(name=sym)
             disease.symp.add(symp)
 
-
+    """
+    Adds diseases to a biomarler from an array of disease names
+"""
 
     def add_dise_from_array(self, row):
         dss = row[7].split(',')
@@ -144,6 +186,10 @@ Biomarkers are often measured and evaluated to examine normal biological process
             dise.save()
             self.dise.add(dise)
 
+    """
+    Adds pathways to a Biomarker from an array of pathway names names
+"""
+
     def add_phys_from_array(self, values):
         phs = values.split(',')
         for ph in phs:
@@ -152,60 +198,92 @@ Biomarkers are often measured and evaluated to examine normal biological process
             phys, created = BdbPathway.objects.get_or_create(name=ph)
             self.phys.add(phys)
 
+    """
+    Adds foods to a biomarker from an array of food names
+"""
+
     def add_food_from_array(self, row):
         vs = row[18].split(',')
         for v in vs:
             if(v is None or v.strip() == ""):
                 v = "None"
             o,created = BdbFood.objects.get_or_create(name=v)
-            self.food.add(o)
+            fb = BdbFoodBiomarker(food=o, biomarker=self)
+            fb.save()
             self.add_fatt_from_array(o, row[19])
             self.add_fatt_from_array(o, row[20])
             
+    """
+    Adds food attributes to a biomarker from an array of food attribute names
+"""
+
     def add_fatt_from_array(self, food, values):
         vs = values.split(',')
         for v in vs:
             if(v is None or v.strip() == ""):
                 v = "None"
+
+            unit, created = BdbUnit.objects.get_or_create(name="None")
             o,created = BdbFoodAttribute.objects.get_or_create(name=v)
-            self.fatt.add(o)
+            fa_effect = BdbFoodAttributeBiomarkerEffect(biomarker=self,
+                                                        food_attribute=o, 
+                                                        threshhold_value = 0.0, 
+                                                        threshhold_unit = unit)
+            fa_effect.save()
 
 
 class BdbFoodAttributeBiomarkerEffect(models.Model):
+    """ Link model between BdbFoodAttribute and BdbBiomarker. Stores additional information about the link:
+        threshhold_value
+        threshhold_unit
+ """
     threshhold_value = models.FloatField()
     threshhold_unit  = models.ForeignKey(BdbUnit)
     food_attribute   = models.ForeignKey(BdbFoodAttribute)
     biomarker        = models.ForeignKey(BdbBiomarker)
-    class Meta:
-        db_table = 'bdb_attribute_biomarker_effect'
+
 
 class BdbFoodBiomarker(models.Model):
+    """ Link model between Food and Biomarker. Stores addtional info about:
+    descr: Description of teh link
+    sci_relia: Scientific reliability
+"""
     food      = models.ForeignKey(BdbFood)
     biomarker = models.ForeignKey(BdbBiomarker)
     descr     = models.TextField(blank=True)
     sci_relia = models.TextField(blank=True)
 
-class BdbAttribKey(BdbEntry):
-    class Meta(BdbEntry.Meta):
-        db_table = 'bdb_attrib_key'
-
 class BdbFoodAttributeValue(models.Model):
+    """
+    
+"""
     food_attribute = models.ForeignKey(BdbFoodAttribute)
     food           = models.ForeignKey(BdbFood)
     unit           = models.ForeignKey(BdbUnit, blank=True)
-    class Meta:
-        db_table = 'bdb_food_attribute_value'
 
 #pre_save.connect(bdb_entry_date_last, sender=BdbAttribKey)
 
+class BdbAttribKey(BdbEntry):
+    """
+    Entry attribute keys tuples.
+    Inherits from BdbEntry
+"""
+    def __unicode__(self):
+        return super(self.__class__, self).__unicode__()
+
 class BdbAttrib(models.Model):
+    """
+    Entry attributes
+    attrib_key: Foreign key to BdbAttribKey
+    value: Value for the tuple
+    biom: Foreign key to BdbBiomarker
+"""
     attrib_key   = models.ForeignKey(BdbAttribKey)
     value = models.TextField(blank=True)
 
     biom  = models.ForeignKey(BdbBiomarker)
     #dise  = models.ForeignKey(BdbDisease, blank=True)
-    class Meta:
-        db_table = 'bdb_attrib'
+
     def __unicode__(self):
         return self.attrib_key.name + '/' + self.value
 

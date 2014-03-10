@@ -9,7 +9,7 @@ listcontains() {
   return 1
 }
 
-sudoportlist="80 443 8000"
+sudoportlist="80 443 8080 8000"
 
 
 echo "Got ./runserver.sh $1 "
