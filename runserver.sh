@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# test
+
 shellcommand="shell"
 
 listcontains() {
