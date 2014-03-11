@@ -144,7 +144,7 @@ Biomarkers are often measured and evaluated to examine normal biological process
 """
     def add_kv(self, k, v):
         # Make sure that empty values get the value 'None'
-        if(v is None or v.trim() == ''):
+        if(v is None):
             v = "None"
         att_k, created = BdbAttribKey.objects.get_or_create(name=k)
         att,created = self.bdbattrib_set.get_or_create(attrib_key=att_k)
@@ -208,8 +208,7 @@ Biomarkers are often measured and evaluated to examine normal biological process
             if(v is None or v.strip() == ""):
                 v = "None"
             o,created = BdbFood.objects.get_or_create(name=v)
-            fb = BdbFoodBiomarker(food=o, biomarker=self)
-            fb.save()
+            fb = BdbFoodBiomarker.objects.get_or_create(food=o, biomarker=self)
             self.add_fatt_from_array(o, row[19])
             self.add_fatt_from_array(o, row[20])
             
@@ -225,11 +224,8 @@ Biomarkers are often measured and evaluated to examine normal biological process
 
             unit, created = BdbUnit.objects.get_or_create(name="None")
             o,created = BdbFoodAttribute.objects.get_or_create(name=v)
-            fa_effect = BdbFoodAttributeBiomarkerEffect(biomarker=self,
-                                                        food_attribute=o, 
-                                                        threshhold_value = 0.0, 
-                                                        threshhold_unit = unit)
-            fa_effect.save()
+            fa_effect = BdbFoodAttributeBiomarkerEffect.objects.get_or_create(biomarker=self,
+                                                        food_attribute=o) 
 
 
 class BdbFoodAttributeBiomarkerEffect(models.Model):
@@ -237,8 +233,8 @@ class BdbFoodAttributeBiomarkerEffect(models.Model):
         threshhold_value
         threshhold_unit
  """
-    threshhold_value = models.FloatField()
-    threshhold_unit  = models.ForeignKey(BdbUnit)
+    threshhold_value = models.FloatField(null=True, blank=True)
+    threshhold_unit  = models.ForeignKey(BdbUnit, null=True, blank=True)
     food_attribute   = models.ForeignKey(BdbFoodAttribute)
     biomarker        = models.ForeignKey(BdbBiomarker)
 
@@ -250,8 +246,8 @@ class BdbFoodBiomarker(models.Model):
 """
     food      = models.ForeignKey(BdbFood)
     biomarker = models.ForeignKey(BdbBiomarker)
-    descr     = models.TextField(blank=True)
-    sci_relia = models.TextField(blank=True)
+    descr     = models.TextField(null=True, blank=True)
+    sci_relia = models.TextField(null=True, blank=True)
 
 class BdbFoodAttributeValue(models.Model):
     """

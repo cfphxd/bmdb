@@ -1,13 +1,62 @@
-{% load render_table from django_tables2 %}
 {% load staticfiles %}
 
 <head>
-        <link rel="stylesheet" href="{{ STATIC_URL }}django_tables2/themes/paleblue/css/screen.css" />
 </head>
 <body>
     <form action="/search/" method="post">{% csrf_token %}
         {{ form.as_table }}
         <input type="submit" value="Submit" />
     </form>
-    {% render_table biomarkers %}
+    <ul>
+    {% if tgt %}
+        {% for item in items %}
+            <li>
+                {{ item.name }}
+                <ul>
+                    <li><b>Diseases:</b></li>
+                    {% for dise in item.dise.all %}
+                        <li>{{dise.name}}</li>
+                        <ul>
+                            <li><b>Symptoms:</b></li>
+                            {% for symp in dise.symp.all %}
+                               <li>{{ symp.name }}</li>
+                            {% endfor %}
+                        </ul>
+                        <ul>
+                            <li><b>Health Claims:</b></li>
+                            {% for claim in dise.fcla.all %}
+                               <li>{{ claim.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endfor %}
+                </ul>
+                <ul>
+                    <li><b>Pathways:</b></li>
+                    {% for phys in item.phys.all %}
+                        <li>{{phys.name}}</li>
+                    {% endfor %}
+                </ul>
+                <ul>
+                    <li><b>Foods:</b></li>
+                    {% for food in item.food.all %}
+                        <li>{{food.name}}</li>
+                        <ul>
+                            <li><b>Health Claims:</b></li>
+                            {% for claim in food.fcla.all %}
+                            <li>{{ claim.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endfor %}
+                </ul>
+                <ul>
+                    <li><b>Food Attributes:</b></li>
+                    {% for fatt in item.fatt.all %}
+                        <li>{{fatt.name}}</li>
+                    {% endfor %}
+                </ul>
+
+            </li> 
+        {% endfor %}
+    {% endif %}
+    </ul>
 </body>
