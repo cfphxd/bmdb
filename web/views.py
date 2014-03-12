@@ -14,14 +14,27 @@ from api.models import *
 from tables import BdbBiomarkerTable
     
 def get_table(request, search_target, search_term):
-    if(search_target=='Biomarker'):
-        return BdbBiomarker.objects.filter(name__icontains=search_term)
+    if(search_target=='All'):
+        return BdbBiomarker.objects.filter(Q(name__icontains=search_term) | 
+                    Q(bdbattrib__value__icontains=search_term) |
+                    Q(dise__name__icontains=search_term) | 
+                    Q(food__name__icontains=search_term) |
+                    Q(phys__name__icontains=search_term) |
+                    Q(fatt__name__icontains=search_term)
+                ).distinct()
+    elif(search_target=='Biomarker'):
+        return BdbBiomarker.objects.filter(Q(name__icontains=search_term) |
+                    Q(bdbattrib__value__icontains=search_term) 
+                ).distinct()
     elif(search_target=='Food'):
         return BdbBiomarker.objects.filter(food__name__icontains=search_term)
-        r#eturn BdbFood.objects.filter(name__icontains=search_term)
+        #return BdbFood.objects.filter(name__icontains=search_term)
     elif(search_target=='Disease'):
         return BdbBiomarker.objects.filter(dise__name__icontains=search_term)
         #return BdbDisease.objects.filter(name__icontains=search_term) 
+    elif(search_target=='Pathway'):
+        return BdbBiomarker.objects.filter(phys__name__icontains=search_term)
+        #return BdbDisease.objects.filter(name__icontains=search_term)
     else:
         return BdbBiomarker.objects.all()
 
@@ -37,12 +50,14 @@ def page_search(request):
         form  = SearchForm() # An unbound form
         items = BdbBiomarker.objects.all()
         search_target = ""
+        search_term=""
     
 
     return render(request, 'page_search.html', {
         'form':   form,
         "items":  items,
         "tgt":    search_target,
+        "sterm":  search_term,
     })
 
 # Create your views here.

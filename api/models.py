@@ -60,6 +60,8 @@ class BdbUnit(BdbEntry):
     """
     Stores SI and non SI units.
 """
+    def __unicode__(self):
+        return super(self.__class__, self).__unicode__()
 
 #@receiver(pre_save, sender=BdbEntry)
 #def bdb_entry_date_last(sender, instance, *args, **kwargs):
@@ -147,7 +149,7 @@ Biomarkers are often measured and evaluated to examine normal biological process
         if(v is None):
             v = "None"
         att_k, created = BdbAttribKey.objects.get_or_create(name=k)
-        att,created = self.bdbattrib_set.get_or_create(attrib_key=att_k)
+        att,created = self.bdbattrib_set.get_or_create(attrib_key=att_k, biom=self)
         att.value = v
         att.save()
 
@@ -277,8 +279,8 @@ class BdbAttrib(models.Model):
     attrib_key   = models.ForeignKey(BdbAttribKey)
     value = models.TextField(blank=True)
 
-    biom  = models.ForeignKey(BdbBiomarker)
-    #dise  = models.ForeignKey(BdbDisease, blank=True)
+    biom  = models.ForeignKey(BdbBiomarker, blank=True, null=True)
+    dise  = models.ForeignKey(BdbDisease, blank=True, null=True)
 
     def __unicode__(self):
         return self.attrib_key.name + '/' + self.value

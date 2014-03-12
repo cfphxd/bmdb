@@ -4,6 +4,8 @@ SEARCH_TARGET_CHOICES = (
     ('Biomarker', 'Biomarker'),
     ('Food', 'Food'),
     ('Disease', 'Disease'),
+    ('Pathway', 'Pathway'),
+    ('All', 'All'),
 )
 
 
