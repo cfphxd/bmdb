@@ -38,11 +38,46 @@ def get_table(request, search_target, search_term):
     else:
         return BdbBiomarker.objects.all()
 
+## HOME ##
 
-def page_search(request):
-    if request.method == 'POST': 
-        form = SearchForm(request.POST) 
-        if form.is_valid(): 
+def page_home(request):
+    return render(request, 'page_home.html', {
+        'tt':   1,
+    })
+
+## LOGIN ##
+
+
+
+
+## ABOUT ##
+
+def page_about(request):
+    return render(request, 'page_about.html', {
+        'tt':   1,
+    })
+
+def page_ab_contact_us(request):
+    return render(request, 'page_ab_contact_us.html', {
+        'tt':   1,
+    })
+
+def page_ab_terms(request):
+    return render(request, 'page_ab_terms.html', {
+        'tt':   1,
+    })
+
+## DATABASE ##
+
+def page_database(request):
+    return render(request, 'page_database.html', {
+        'tt':   1,
+    })
+
+def page_db_search(request):
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
             search_term = form.cleaned_data['search_term']
             search_target = form.cleaned_data['search_target']
             items = get_table(request, search_target, search_term)
@@ -51,13 +86,59 @@ def page_search(request):
         items = BdbBiomarker.objects.all()
         search_target = ""
         search_term=""
-    
 
-    return render(request, 'page_search.html', {
+
+    return render(request, 'page_db_search.html', {
         'form':   form,
         "items":  items,
         "tgt":    search_target,
         "sterm":  search_term,
     })
+
+
+def page_db_register(request):
+    return render(request, 'page_db_register.html', {
+        'tt':   1,
+    })
+
+def page_db_faq(request):
+    return render(request, 'page_db_faq.html', {
+        'tt':   1,
+    })
+
+
+## FOOD CLAIMS  ##
+
+def page_food_claims(request):
+    return render(request, 'page_food_claims.html', {
+        'tt':   1,
+    })
+
+def page_fc_updates(request):
+    return render(request, 'page_fc_updates.html', {
+        'tt':   1,
+    })
+
+def page_fc_nz_info(request):
+    return render(request, 'page_fc_nz_info.html', {
+        'tt':   1,
+    })
+
+def page_fc_world_info(request):
+    return render(request, 'page_fc_world_info.html', {
+        'tt':   1,
+    })
+
+def page_fc_food_composition_db(request):
+    return render(request, 'page_fc_food_composition_db.html', {
+        'tt':   1,
+    })
+
+
+def page_fc_make_claim(request):
+    return render(request, 'page_fc_make_claim.html', {
+        'tt':   1,
+    })
+
 
 # Create your views here.

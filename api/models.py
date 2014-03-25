@@ -56,6 +56,14 @@ class BdbEntry(models.Model):
     def __unicode__(self):
         return self.name
 
+
+class BdbList(BdbEntry):
+    #def render(self):
+    #    pass
+    class Meta(BdbEntry.Meta):
+        abstract = True
+
+
 class BdbUnit(BdbEntry):
     """
     Stores SI and non SI units.
@@ -123,6 +131,8 @@ class BdbFood(BdbEntry):
     """ Stores information about food.
         Inherits from BdbEntry
 """
+    fatt = models.ManyToManyField(BdbFoodAttribute, through='BdbFoodAttributeValue', blank=True, null=True)
+
     def __unicode__(self):
         return super(self.__class__, self).__unicode__()
 
@@ -140,6 +150,16 @@ Biomarkers are often measured and evaluated to examine normal biological process
     #fatt = models.ManyToManyField(BdbFoodAttribute)
 
     unit = models.ForeignKey(BdbUnit, blank=True)
+
+    """    def render(self):
+        res = BdbAttrib.title.'\n'
+        for item in self.bdbattrib_set.all():
+            res += item->render()
+
+        res += 
+        return res
+"""
+
 
     """
     Add a key value pair to the biomarker

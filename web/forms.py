@@ -12,4 +12,4 @@ SEARCH_TARGET_CHOICES = (
 
 class SearchForm(forms.Form):
     search_target = forms.ChoiceField(choices = SEARCH_TARGET_CHOICES)
-    search_term = forms.CharField(max_length=100)
+    search_term = forms.CharField(required=True)

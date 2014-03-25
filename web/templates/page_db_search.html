@@ -1,19 +1,55 @@
+{% extends "page_base.html" %}
+
 {% load staticfiles %}
 {% load emph %}
 
+{% block content %}
+    <style>
+        #searchResult p {padding: 10px; }
+        #searchResult h1 {font-size: 1.5em; font-weight: bold;}
+        #searchResult input {border: 1px solid black; padding: 2px;}
+        #searchResult p.hint {color: #c0c0c0; }
+        #searchResult ul ul {margin-left: 15px; margin-bottom: 5px;}
+        #searchResult ul ul ul {margin-left: 15px; margin-bottom: 5px;}
+    </style>
 
-<head>
-</head>
-<body>
+    <div class="clearfix colelem" id="u3241-4"><!-- content -->
+     <p>Search the DB</p>
+    </div>
+
+    <div class="clearfix colelem" id="pu965-3"><!-- group -->
+    <div class="grpelem" id="u3575">
+    <div id="htmlInclude"><!-- group -->
+    <div id="searchResult">
+
+    <br /><br />
+
     <form action="/search/" method="post">{% csrf_token %}
-        {{ form.as_table }}
-        <input type="submit" value="Submit" />
+        {{ form.non_field_errors }}
+        <table style="width:500px;">
+            <tr>
+                <td>Search target:</td>
+                <td>
+                    {{ form.search_target.errors }}
+                    {{ form.search_target }}
+                </td>
+                <td>Search term:</td>
+                <td>
+                    {{ form.search_term.errors }}
+                    {{ form.search_term }}
+                </td>
+                <td>&nbsp;&nbsp;<input type="submit" value="Submit" /></td>
+            </tr>
+        </table>
     </form>
+    <br /><br /><br />  
+    <h1>Search Result</h1>
+    <br /><br />
     <ul>
     {% if tgt %}
         {% for item in items %}
             <li>
-                {{ item.name|empha:sterm|safe }}
+                <h1>{{ item.name|empha:sterm|safe }}</h1>
                 <ul>
                     <li><b>Attributes</b></li>
                     {% for att in item.bdbattrib_set.all %}
@@ -71,4 +107,8 @@
         {% endfor %}
     {% endif %}
     </ul>
-</body>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}
